@@ -7,3 +7,4 @@ mv __init__.py ../venv/lib/python3.10/site-packages/intel_extension_for_pytorch/
 mv grad_scaler.py ../venv/lib/python3.10/site-packages/intel_extension_for_pytorch/xpu/amp/grad_scaler.py
 cd ..
 rmdir patch
+rm patch.sh
