@@ -5,7 +5,6 @@ from collections import defaultdict, abc
 import warnings # noqa F401
 from enum import Enum
 from typing import Any, Dict, List, Optional, Tuple
-import intel_extension_for_pytorch
 import intel_extension_for_pytorch._C as core
 
 class _MultiDeviceReplicator(object):
@@ -208,8 +207,7 @@ class GradScaler(object):
                 for grads in per_dtype_grads.values():
                     core._amp_foreach_non_finite_check_and_unscale_(grads,
                                                                     per_device_found_inf.get("cpu"),
-                                                                    per_device_inv_scale.get("cpu"))
-            
+                                                                    per_device_inv_scale.get("cpu"))     
         return per_device_found_inf._per_device_tensors
 
     def unscale_(self, optimizer):
@@ -371,7 +369,6 @@ class GradScaler(object):
 
             _scale = _scale.to(to_device)
             _growth_tracker = _growth_tracker.to(to_device)
-
         # To prepare for next iteration, clear the data collected from optimizers this iteration.
         self._per_optimizer_states = defaultdict(_refresh_per_optimizer_state)
 
